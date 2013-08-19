@@ -8,9 +8,19 @@ omake-deps: omake_deps.ml
 test: omake-deps
 	./omake-deps < sample-dependencies.in > sample-dependencies.om
 
+ifndef PREFIX
+  PREFIX = $(shell dirname $$(dirname $$(which ocamlc)))
+  export PREFIX
+endif
+
+ifndef BINDIR
+  BINDIR = $(PREFIX)/bin
+  export BINDIR
+endif
+
 .PHONY: install
 install:
-	cp omake-deps $(OCAML_BASE)/bin
+	cp omake-deps $(BINDIR)
 
 .PHONY: clean
 clean:
