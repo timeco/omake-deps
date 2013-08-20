@@ -22,6 +22,10 @@ endif
 install:
 	cp omake-deps $(BINDIR)
 
+.PHONY: uninstall
+uninstall:
+	rm -f $(BINDIR)/omake-deps
+
 .PHONY: clean
 clean:
 	rm -f *.cm* *.o *.annot *~
